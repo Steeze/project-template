@@ -13,7 +13,6 @@ import {
 import { getWorkspace } from "@schematics/angular/utility/config";
 
 import { Schema as ProjectTemplateOptions } from "../utils/schema";
-// import { setupOptions } from "../utils/setup";
 
 function deleteFile(host: Tree, path: string) {
   if (host.exists(path)) {
@@ -30,18 +29,11 @@ function overwriteFiles(path: Path) {
   };
 }
 
-// You don't have to export the function as default. You can also have more than one rule factory
-// per file.
 export function projectTemplate(options: ProjectTemplateOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    // setupOptions(tree, options);
-
     const workspace = getWorkspace(tree);
-
     const project = workspace.projects[options.project];
-
     const sourcePath = join(project.root as Path, "src");
-
     const appPath = join(sourcePath as Path, "app");
 
     const rule = chain([
